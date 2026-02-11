@@ -1,50 +1,21 @@
 :root{
-  --ink:#0f1a23;
-  --deep:#0a131b;
-  --gold:#d8b45c;
-  --pink:#f1c9d3;
+  --bg:#2876AB;
+  --pink:#EFC5CF;
+  --ink:#1B1F24;
   --white:rgba(255,255,255,.92);
-  --white2:rgba(255,255,255,.75);
+  --white2:rgba(255,255,255,.82);
   --max:760px;
+  --radius:20px;
 }
 
 *{box-sizing:border-box}
+
 body{
   margin:0;
-  font-family:"Noto Serif TC","PingFang TC","Microsoft JhengHei",serif;
-  background:var(--deep);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  background:var(--bg);
   color:var(--white);
   line-height:1.9;
-  overflow-x:hidden;
-}
-
-/* 墨色背景 */
-.ink-bg{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,.04), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,.05), transparent 45%),
-    linear-gradient(180deg,#0c151d,#081018);
-  z-index:-2;
-}
-
-/* 气脉流线 */
-.flow-line{
-  position:fixed;
-  top:50%;
-  left:-10%;
-  width:120%;
-  height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:.25;
-  animation:flow 8s linear infinite;
-  z-index:-1;
-}
-
-@keyframes flow{
-  from{transform:translateX(-20%)}
-  to{transform:translateX(20%)}
 }
 
 .container{
@@ -53,54 +24,87 @@ body{
   padding:0 20px;
 }
 
-/* 顶部 */
+/* 頂部 */
 .topbar{
-  padding:30px 0;
-  text-align:center;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  background:var(--pink);
+  padding:18px 0;
 }
 
 .brand{
-  font-size:26px;
-  letter-spacing:4px;
-  color:var(--gold);
-}
-
-/* section */
-.section{
-  padding:100px 0;
-}
-
-/* 首屏 */
-.hero__title{
-  font-size:clamp(48px,7vw,72px);
+  font-size:28px;
   font-weight:900;
-  line-height:1.2;
+  color:#2876AB;
+  letter-spacing:2px;
+}
+
+/* 區塊 */
+.section{
+  padding:90px 0;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+.section:first-of-type{
+  border-top:0;
+}
+
+/* 第一標題 */
+.hero__title{
+  font-size:clamp(42px,7vw,60px);
+  font-weight:900;
   margin-bottom:40px;
   text-align:left;
-  background:linear-gradient(90deg,#fff,var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
 }
 
 /* 正文 */
 .text{
-  font-size:18px;
+  font-size:17px;
   color:var(--white2);
+  margin-bottom:24px;
 }
 
-/* 印章式标题 */
+/* 粉色章標題 */
 .h2{
-  display:inline-block;
-  padding:18px 40px;
-  margin:0 auto 40px;
-  font-size:28px;
-  font-weight:700;
-  color:#2a1f12;
+  display:block;
+  width:fit-content;
+  margin:0 auto 50px;
+  padding:16px 40px;
   background:var(--pink);
+  color:#2876AB;
+  font-size:26px;
+  font-weight:900;
   border-radius:100px;
   text-align:center;
-  box-shadow:
-    0 0 40px rgba(241,201,211,.3),
-    inset 0 0 15px rgba(255,255,255,.4);
+}
+
+/* 小標題 */
+.h3{
+  font-size:19px;
+  font-weight:900;
+  margin:40px 0 15px;
+}
+
+/* 聯絡區 */
+.contact{
+  background:var(--pink);
+  padding:20px;
+  border-radius:var(--radius);
+  color:var(--ink);
+}
+
+.contact__row{
+  display:flex;
+  gap:15px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+.contact__row:last-child{
+  border-bottom:0;
+}
+
+.label{
+  width:60px;
+  font-weight:600;
+}
+
+.value{
+  flex:1;
 }
