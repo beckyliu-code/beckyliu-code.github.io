@@ -22,7 +22,7 @@ body{
   line-height: 1.9;
 }
 
-/* 內容居中 + 自適應（所有屏通用） */
+/* 內容居中 + 自適應 */
 .container{
   width:100%;
   max-width: var(--max);
@@ -30,7 +30,7 @@ body{
   padding:0 20px;
 }
 
-/* ===== 頂部粉色欄 ===== */
+/* 頂部粉色欄 */
 .topbar{
   position: sticky;
   top: 0;
@@ -55,64 +55,38 @@ body{
   line-height: 1.05;
 }
 
-/* ===== 每屏分隔（通用） ===== */
+/* 每屏分隔 */
 .section{
   padding: 72px 0;
   border-top: 1px solid rgba(255,255,255,.18);
 }
 .section:first-of-type{ border-top: 0; }
 
-/* =======================================================
-   ✅ 第一屏：宣言式（真正区别在这里）
-   - 整屏居中
-   - 行宽收敛（max-width 更小）
-   - 字号更大、段落间距更像宣言
-======================================================= */
-.section.hero{
-  padding: 110px 0 120px;     /* 更明显的“首屏空间感” */
-  text-align: center;         /* ✅ 关键：整屏居中 */
-}
+/* ===== 第一屏：标题居中，正文左对齐 ===== */
+.section.hero{ padding: 105px 0 110px; }
 
-.section.hero .container{
-  text-align: center;         /* ✅ 防止被其它规则影响 */
-}
-
-/* 首屏主标题：更大、更重、更集中 */
+/* 首屏标题：居中 + 小两号（比之前更收敛） */
 .section.hero .hero__title{
-  margin: 0 auto 34px;
-  max-width: 16ch;            /* ✅ 收敛：让标题更像宣言块 */
-  font-size: clamp(44px, 9vw, 66px);
+  text-align: center;
+  margin: 0 auto 28px;
+
+  /* “小两号”：把最大值和整体区间下调 */
+  font-size: clamp(38px, 7.5vw, 54px);
   font-weight: 900;
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: #fff;
 }
 
-/* 首屏段落：强制居中 + 控行宽 */
+/* 首屏正文：回到左对齐（阅读更舒服） */
 .section.hero .lead,
 .section.hero .body{
-  max-width: 34ch;            /* ✅ 关键：强烈的宣言行宽 */
-  margin: 0 auto 18px;
-  font-size: 19px;
-  color: var(--white2);
-}
-
-/* 首屏按钮：居中 */
-.section.hero .actions{
-  margin-top: 26px;
-  display:flex;
-  justify-content:center;
-}
-
-/* =======================================================
-   其他屏：阅读式（左对齐）
-======================================================= */
-.section:not(.hero) .container{
   text-align: left;
 }
 
+/* 标题条：居中 + 背景宽度随文字收缩 */
 .h2{
-  display: table;             /* 让粉底宽度=文字宽度块，并居中 */
+  display: table;
   margin: 0 auto 28px;
   padding: 16px 26px;
   background: rgba(239,197,207,.95);
@@ -125,6 +99,7 @@ body{
   max-width: 100%;
 }
 
+/* 副标题统一 */
 .h3{
   margin: 26px 0 10px;
   font-size: 19px;
@@ -133,6 +108,7 @@ body{
   line-height: 1.35;
 }
 
+/* 文本 */
 .lead{
   margin: 0 0 18px;
   font-size: 18px;
@@ -151,6 +127,7 @@ body{
   color: var(--white3);
 }
 
+/* 列表 */
 .ol, .ul{
   margin: 12px 0 18px;
   padding-left: 18px;
@@ -159,6 +136,12 @@ body{
 .ol li, .ul li{ margin: 12px 0; }
 
 /* 按鈕 */
+.actions{
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .btn{
   display:inline-flex;
   align-items:center;
