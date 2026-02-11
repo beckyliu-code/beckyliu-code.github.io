@@ -2,10 +2,13 @@
   --bg: #2876AB;
   --pink: #EFC5CF;
   --text: #1B1F24;
-  --white: rgba(255,255,255,.92);
-  --white2: rgba(255,255,255,.82);
-  --white3: rgba(255,255,255,.70);
+
+  --white: rgba(255,255,255,.96);
+  --white2: rgba(255,255,255,.86);
+  --white3: rgba(255,255,255,.72);
+
   --max: 720px;
+  --radius: 18px;
 }
 
 *{ box-sizing:border-box; }
@@ -13,102 +16,180 @@ html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
-  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  background:var(--bg);
-  color:var(--white);
-  line-height:1.9;
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.9;
 }
 
-/* 容器 */
+/* 內容居中 + 自適應（所有屏通用） */
 .container{
   width:100%;
-  max-width:var(--max);
+  max-width: var(--max);
   margin:0 auto;
   padding:0 20px;
 }
 
-/* 頂部 */
+/* ===== 頂部粉色欄 ===== */
 .topbar{
-  background:var(--pink);
-  padding:14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--pink);
+  border-bottom: 1px solid rgba(0,0,0,.08);
 }
+.topbar__inner{ padding: 14px 0; }
 
 .brand{
   display:flex;
-  gap:10px;
-  font-weight:900;
-  font-size:32px;
-  color:#2876AB;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.brand__word,
+.brand__sep{
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: #2876AB;
+  font-size: 32px;
+  line-height: 1.05;
 }
 
-/* ===== 第一屏强化 ===== */
-
-.hero{
-  padding:120px 0 140px 0;   /* 上下拉开 */
-  text-align:center;         /* 整个第一屏文字居中 */
-}
-
-.hero__title{
-  font-size:clamp(42px, 8vw, 56px);
-  font-weight:900;
-  line-height:1.15;
-  margin-bottom:40px;
-  color:#ffffff;
-}
-
-.hero p{
-  max-width:640px;           /* 控制行宽 */
-  margin:0 auto 24px auto;   /* 居中 */
-  font-size:18px;
-  color:var(--white2);
-}
-
-/* ===== 其他屏保持阅读结构（暂时不动） ===== */
-
+/* ===== 每屏分隔（通用） ===== */
 .section{
-  padding:80px 0;
-  border-top:1px solid rgba(255,255,255,.15);
+  padding: 72px 0;
+  border-top: 1px solid rgba(255,255,255,.18);
+}
+.section:first-of-type{ border-top: 0; }
+
+/* =======================================================
+   ✅ 第一屏：宣言式（真正区别在这里）
+   - 整屏居中
+   - 行宽收敛（max-width 更小）
+   - 字号更大、段落间距更像宣言
+======================================================= */
+.section.hero{
+  padding: 110px 0 120px;     /* 更明显的“首屏空间感” */
+  text-align: center;         /* ✅ 关键：整屏居中 */
+}
+
+.section.hero .container{
+  text-align: center;         /* ✅ 防止被其它规则影响 */
+}
+
+/* 首屏主标题：更大、更重、更集中 */
+.section.hero .hero__title{
+  margin: 0 auto 34px;
+  max-width: 16ch;            /* ✅ 收敛：让标题更像宣言块 */
+  font-size: clamp(44px, 9vw, 66px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+/* 首屏段落：强制居中 + 控行宽 */
+.section.hero .lead,
+.section.hero .body{
+  max-width: 34ch;            /* ✅ 关键：强烈的宣言行宽 */
+  margin: 0 auto 18px;
+  font-size: 19px;
+  color: var(--white2);
+}
+
+/* 首屏按钮：居中 */
+.section.hero .actions{
+  margin-top: 26px;
+  display:flex;
+  justify-content:center;
+}
+
+/* =======================================================
+   其他屏：阅读式（左对齐）
+======================================================= */
+.section:not(.hero) .container{
+  text-align: left;
 }
 
 .h2{
-  display:inline-block;
-  margin:0 auto 32px auto;
-  padding:18px 28px;
-  background:var(--pink);
-  color:#2876AB;
-  font-size:26px;
-  font-weight:900;
-  border-radius:22px;
-  text-align:center;
-}
-
-.section .container{
-  text-align:left;
-}
-
-.section .h2{
-  display:table;
-  margin-left:auto;
-  margin-right:auto;
+  display: table;             /* 让粉底宽度=文字宽度块，并居中 */
+  margin: 0 auto 28px;
+  padding: 16px 26px;
+  background: rgba(239,197,207,.95);
+  color: #2876AB;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.3;
+  border-radius: 22px;
+  text-align: center;
+  max-width: 100%;
 }
 
 .h3{
-  margin:28px 0 10px;
-  font-size:19px;
-  font-weight:900;
+  margin: 26px 0 10px;
+  font-size: 19px;
+  font-weight: 900;
+  color: rgba(255,255,255,.96);
+  line-height: 1.35;
 }
 
-p{
-  margin:0 0 18px;
+.lead{
+  margin: 0 0 18px;
+  font-size: 18px;
+  color: rgba(255,255,255,.90);
 }
 
-ol, ul{
-  padding-left:20px;
+.body{
+  margin: 0 0 18px;
+  font-size: 16px;
+  color: var(--white2);
 }
+
+.small{
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: var(--white3);
+}
+
+.ol, .ul{
+  margin: 12px 0 18px;
+  padding-left: 18px;
+  color: rgba(255,255,255,.88);
+}
+.ol li, .ul li{ margin: 12px 0; }
+
+/* 按鈕 */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 46px;
+  padding: 0 16px;
+  border-radius: 14px;
+  text-decoration:none;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.16);
+  color: rgba(255,255,255,.94);
+}
+.btn:hover{ background: rgba(255,255,255,.22); }
+
+/* 聯絡 */
+.contact{ margin-top: 14px; padding: 0; }
+.contact__row{
+  display:flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+}
+.contact__row:last-child{ border-bottom: 0; }
+.label{ width: 56px; font-size: 13px; color: rgba(255,255,255,.72); }
+.value{ font-size: 14px; color: rgba(255,255,255,.92); }
 
 .footer{
-  padding:30px 0;
-  text-align:center;
-  font-size:14px;
-  color:var(--white3);
+  padding: 22px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,.70);
 }
