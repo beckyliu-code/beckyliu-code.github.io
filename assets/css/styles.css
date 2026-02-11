@@ -1,184 +1,41 @@
-:root{
-  --max: 760px;
-
-  /* 主體：景泰藍背景 + 粉米承載 */
-  --bg: #2876AB;           /* 景泰藍 */
-  --panel: #EFC5CF;        /* 粉米 */
-  --topbar: #EFC5CF;       /* 頂部粉色（你要求） */
-
-  --text: #1B1F24;
-  --muted: #4E5E70;
-
-  --inkOnBlue: rgba(255,255,255,.92);
-  --line: rgba(0,0,0,.10);
-
-  /* 頂部標題字色：景泰藍 */
-  --titleBlue: #2876AB;
-
-  --radius: 16px;
-  --btnBg: rgba(255,255,255,.18);
-}
-
-*{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
-
-body{
-  margin:0;
-  font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background: var(--bg);
-  color: var(--inkOnBlue);
-  line-height: 1.85;
-}
-
-.container{
-  width: min(var(--max), calc(100% - 36px));
-  margin: 0 auto;
-}
-
-/* 頂部：粉色；無菜單 */
-.topbar{
-  position: sticky;
-  top:0;
-  z-index: 30;
-  background: var(--topbar);
-  border-bottom: 1px solid rgba(0,0,0,.08);
-}
-.topbar__inner{
-  padding: 14px 0;
-}
-
-/* 你要求：回歸本源｜身心整合同等大小/字體/顏色；字體×2 */
-.brand--inline{
-  display:flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.brand__word,
-.brand__sep{
-  font-weight: 800;
-  letter-spacing: .2px;
-  color: var(--titleBlue);
-  font-size: 32px;     /* 這裡按「兩倍」做大：原來大概 16px → 32px */
-  line-height: 1.05;
-}
-
-/* section：縱向閱讀 */
+/* ====== 層級強化：每屏清楚分開 ====== */
 .section{
-  padding: 46px 0;
+  padding: 54px 0;                 /* 比之前更有呼吸感 */
+  border-top: 1px solid rgba(255,255,255,.16); /* 每屏一条极淡分隔线 */
+}
+.section:first-of-type{
+  border-top: 0;
 }
 
-/* 首屏 */
-.hero{ padding-top: 56px; }
-
-.hero__title{
-  margin:0 0 14px;
-  font-size: clamp(34px, 7vw, 46px);
-  line-height: 1.18;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,.96);
-}
-
-/* 文本排版（你要求：逗號/句號換行；我已在 HTML 用 <br/> 做了） */
-.lead{
-  margin: 0 0 14px;
-  font-size: 18px;
-  color: rgba(255,255,255,.90);
-}
-.body{
-  margin: 0 0 14px;
-  font-size: 16px;
-  color: rgba(255,255,255,.82);
-}
-
+/* ====== 標題：粉色底條 + 景泰藍字（統一） ====== */
 .h2{
-  margin:0 0 14px;
-  font-size: 22px;
-  line-height: 1.35;
-  color: rgba(255,255,255,.94);
-}
-.h3{
-  margin: 18px 0 6px;
-  font-size: 16px;
-  color: rgba(255,255,255,.92);
-  font-weight: 700;
-}
-
-/* 承載區：只在必要處使用粉米（quote / contact） */
-.quote{
-  margin: 14px 0 0;
-  padding: 14px 14px;
-  background: rgba(239,197,207,.92);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: var(--radius);
-  color: var(--text);
-}
-
-.ol, .ul{
-  margin: 10px 0 14px;
-  padding-left: 18px;
-  color: rgba(255,255,255,.86);
-}
-.ol li, .ul li{ margin: 10px 0; }
-
-.small{
-  margin: 12px 0 0;
-  font-size: 14px;
-  color: rgba(255,255,255,.76);
-}
-
-/* 按鈕 */
-.actions{
-  display:flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 18px;
-}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  height: 46px;
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 10px 14px;
   border-radius: 14px;
-  text-decoration:none;
-  font-size: 14px;
-  border: 1px solid rgba(255,255,255,.22);
-  background: var(--btnBg);
+  background: rgba(239,197,207,.92); /* 粉米底 */
+  color: #2876AB;                    /* 景泰藍字 */
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* 首屏主标题保持白字大标题，但更“标题样子” */
+.hero__title{
+  margin:0 0 18px;
+  font-size: clamp(38px, 8vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,.98);
+  font-weight: 900;
+}
+
+/* ====== 副標題（h3）統一：更醒目、同一節奏 ====== */
+.h3{
+  margin: 22px 0 8px;
+  font-size: 18px;
+  font-weight: 800;
   color: rgba(255,255,255,.94);
-}
-.btn:hover{ background: rgba(255,255,255,.22); }
-
-/* 聯絡區 */
-.contact{
-  margin-top: 14px;
-  padding: 14px 14px;
-  background: rgba(239,197,207,.92);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: var(--radius);
-  color: var(--text);
-}
-.contact__row{
-  display:flex;
-  gap: 12px;
-  align-items: baseline;
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(0,0,0,.08);
-}
-.contact__row:last-child{ border-bottom: 0; }
-
-.label{
-  width: 56px;
-  font-size: 13px;
-  color: rgba(0,0,0,.55);
-}
-.value{
-  font-size: 14px;
-  color: rgba(0,0,0,.85);
-}
-
-.footer{
-  padding: 22px 0 0;
-  text-align:center;
-  font-size: 13px;
-  color: rgba(255,255,255,.70);
+  line-height: 1.35;
 }
