@@ -1,10 +1,10 @@
 :root{
   --bg: #2876AB;              /* 景泰藍 */
   --pink: #EFC5CF;            /* 粉米 */
-  --ink: #1B1F24;             /* 深字（粉底上） */
+  --ink: #1B1F24;             /* 粉底上的深字 */
 
   --white: rgba(255,255,255,.92);
-  --white2: rgba(255,255,255,.84);
+  --white2: rgba(255,255,255,.86);
   --white3: rgba(255,255,255,.72);
 
   --max: 720px;
@@ -64,7 +64,7 @@ body{
 }
 .section:first-of-type{ border-top: 0; }
 
-/* 1) 只有第一標題靠左 */
+/* 只有第一屏 H1：靠左 */
 .hero__title{
   margin: 0 0 18px;
   font-size: clamp(38px, 8vw, 52px);
@@ -75,17 +75,12 @@ body{
   text-align: left;
 }
 
-/* 全站內文統一 */
+/* 全站說明文字：統一字級（你要求「一屏說明文字體統一」） */
 .text{
   margin: 0 0 18px;
-  font-size: 16px;
-  color: var(--white2);
-}
-
-/* 第一屏第一段略大一點，但仍然同一風格 */
-.hero .text:first-of-type{
   font-size: 17px;
-  color: rgba(255,255,255,.90);
+  line-height: 1.9;
+  color: var(--white2);
 }
 
 /* 行動按鈕 */
@@ -110,9 +105,11 @@ body{
 }
 .btn:hover{ background: rgba(255,255,255,.22); }
 
-/* 章標題：粉底 + 景泰藍字；居中（只對 h2，不影響 h1） */
+/* 章標題 H2：居中（你最新要求「其他標題居中」） */
 .h2{
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
   margin: 0 auto 28px;
   padding: 16px 22px;
 
@@ -124,24 +121,17 @@ body{
   line-height: 1.3;
 
   border-radius: 22px;
-  max-width: 100%;
+  text-align: center;
 }
 
-/* h2 居中，但正文保持左對齊 */
-.section .container{ text-align: left; }
-.h2{
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* 副標題統一 */
+/* 副標題 H3：居中 */
 .h3{
-  margin: 26px 0 10px;
+  margin: 30px 0 10px;
   font-size: 19px;
   font-weight: 900;
   color: rgba(255,255,255,.96);
   line-height: 1.35;
+  text-align: center;
 }
 
 /* 列表 */
@@ -154,7 +144,7 @@ body{
   margin: 12px 0;
 }
 
-/* 6) 聯絡/地點：粉色背景 */
+/* 聯絡 / 地點：粉色背景 */
 .contact{
   margin-top: 14px;
   padding: 16px 16px;
