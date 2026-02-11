@@ -1,39 +1,17 @@
 /* ================
   主題：兩套「中國色」
-  - 官綠・蜜蠟（guanlv）
-  - 景泰藍・粉米（jingtai）
+  - 官綠（背景）＋米白/蜜蠟承載（卡片）＋蜜蠟點睛
+  - 景泰藍（背景）＋粉米承載（卡片）＋霧白點睛
 ================ */
 
 :root{
   --radius: 18px;
-  --shadow: 0 10px 30px rgba(0,0,0,.06);
+  --shadow: 0 14px 40px rgba(0,0,0,.18); /* 深色背景下需要更明顯 */
   --max: 760px;
 }
 
-/* 預設：官綠・蜜蠟 */
-html{ scroll-behavior:smooth; }
-html[data-theme="guanlv"]{
-  --bg: #F8E9C4;        /* 米白（底） */
-  --text: #1F2328;
-  --muted: #4F5B55;
-  --card: #F6E6B8;      /* 更柔的承載底 */
-  --border: rgba(23,106,59,.18);
-  --accent: #176A3B;    /* 官綠 */
-  --accent2: #E9B140;   /* 蜜蠟（金） */
-}
-
-/* 景泰藍・粉米 */
-html[data-theme="jingtai"]{
-  --bg: #F9EBEE;        /* 霧白 */
-  --text: #1B1F24;
-  --muted: #4E5E70;
-  --card: #EFC5CF;      /* 粉米承載 */
-  --border: rgba(40,118,171,.18);
-  --accent: #2876AB;    /* 景泰藍 */
-  --accent2: #EFC5CF;   /* 粉米 */
-}
-
 *{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
@@ -43,19 +21,47 @@ body{
   line-height: 1.85;
 }
 
+/* =================
+   Theme: 官綠・蜜蠟
+   背景=官綠｜承載=米白蜜蠟｜點睛=蜜蠟金
+================= */
+html[data-theme="guanlv"]{
+  --bg: #176A3B;             /* 官綠：整體背景 */
+  --text: #1F2328;           /* 卡片內主文字（深色，讀起來穩） */
+  --muted: #4A5A52;
+  --card: #F8E9C4;           /* 米白（偏蜜蠟）：承載板塊 */
+  --card2: #E9B140;          /* 蜜蠟金：點睛 */
+  --border: rgba(0,0,0,.10); /* 卡片邊線用深色更自然 */
+  --topbar: rgba(23,106,59,.82);
+}
+
+/* =================
+   Theme: 景泰藍・粉米
+   背景=景泰藍｜承載=粉米｜點睛=霧白
+================= */
+html[data-theme="jingtai"]{
+  --bg: #2876AB;             /* 景泰藍：整體背景 */
+  --text: #1B1F24;
+  --muted: #4E5E70;
+  --card: #EFC5CF;           /* 粉米：承載板塊 */
+  --card2: #F9EBEE;          /* 霧白：點睛 */
+  --border: rgba(0,0,0,.10);
+  --topbar: rgba(40,118,171,.82);
+}
+
 .container{
   width: min(var(--max), calc(100% - 40px));
   margin: 0 auto;
 }
 
-/* Topbar */
+/* Topbar：跟隨背景主色，但更透明一點 */
 .topbar{
   position: sticky;
   top:0;
   z-index: 50;
   backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--bg) 70%, white 30%);
-  border-bottom: 1px solid rgba(0,0,0,.06);
+  background: var(--topbar);
+  border-bottom: 1px solid rgba(255,255,255,.18);
 }
 .topbar__inner{
   display:flex;
@@ -64,8 +70,8 @@ body{
   padding: 14px 0;
 }
 .brand{ display:flex; flex-direction:column; gap:2px; }
-.brand__name{ font-weight:700; letter-spacing:.2px; }
-.brand__tag{ color: var(--muted); font-size: 12px; }
+.brand__name{ font-weight:700; letter-spacing:.2px; color: rgba(255,255,255,.92); }
+.brand__tag{ color: rgba(255,255,255,.75); font-size: 12px; }
 
 .nav{
   display:flex;
@@ -75,40 +81,33 @@ body{
   justify-content: flex-end;
 }
 .nav a{
-  color: var(--muted);
+  color: rgba(255,255,255,.82);
   text-decoration:none;
   font-size: 14px;
   padding: 8px 10px;
   border-radius: 12px;
 }
-.nav a:hover{
-  background: rgba(0,0,0,.04);
-  color: var(--text);
-}
-.nav__cta{
-  border: 1px solid rgba(0,0,0,.12);
-}
+.nav a:hover{ background: rgba(255,255,255,.12); color: rgba(255,255,255,.95); }
+.nav__cta{ border: 1px solid rgba(255,255,255,.22); }
 
-/* Theme Button */
+/* Theme Button：在深色頂欄上保持可見 */
 .themeBtn{
   height: 34px;
   padding: 0 12px;
   border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.14);
-  background: color-mix(in srgb, white 60%, var(--card) 40%);
-  color: var(--text);
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.9);
   font-size: 13px;
   cursor: pointer;
 }
-.themeBtn:hover{ filter: brightness(.98); }
+.themeBtn:hover{ background: rgba(255,255,255,.16); }
 
 /* Hero */
-.hero{
-  padding: 92px 0 70px;
-}
+.hero{ padding: 92px 0 70px; }
 .kicker{
   margin:0 0 12px;
-  color: var(--muted);
+  color: rgba(255,255,255,.72); /* 在深色背景上直接用白系 */
   font-size: 13px;
   letter-spacing: .12em;
 }
@@ -117,102 +116,83 @@ body{
   font-size: clamp(34px, 5vw, 46px);
   line-height: 1.2;
   letter-spacing: -0.02em;
+  color: rgba(255,255,255,.95);
 }
 .hero__subtitle{
   margin: 0 0 16px;
   font-size: 18px;
+  color: rgba(255,255,255,.88);
 }
 .hero__lead{
   margin: 0 0 26px;
-  color: var(--muted);
+  color: rgba(255,255,255,.78);
   font-size: 16px;
 }
 .hero__hint{
   margin-top: 28px;
-  color: rgba(0,0,0,.45);
+  color: rgba(255,255,255,.62);
   font-size: 12px;
   letter-spacing: .2em;
   text-transform: uppercase;
 }
 
-/* Section */
-.section{
-  padding: 84px 0;
-}
+/* Section：在深色背景上，標題用白；內容靠卡片承載 */
+.section{ padding: 84px 0; }
 .section h2{
   margin: 0 0 18px;
   font-size: 26px;
   line-height: 1.35;
   letter-spacing: -0.01em;
+  color: rgba(255,255,255,.92);
 }
-h3{
-  margin: 0 0 10px;
-  font-size: 18px;
-  line-height: 1.4;
-}
+h3{ margin: 0 0 10px; font-size: 18px; line-height: 1.4; }
 p{ margin: 0 0 14px; }
 
+/* 卡片：第二主色（承載色）大面積 */
 .card{
-  background: color-mix(in srgb, var(--card) 78%, white 22%);
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 22px;
+  color: var(--text); /* 卡片內文字回到深色 */
 }
 .card--muted{
-  background: rgba(255,255,255,.55);
+  background: color-mix(in srgb, var(--card) 78%, white 22%);
 }
 
+/* 引言線：只用點睛色（小面積） */
 .quote{
-  border-left: 3px solid color-mix(in srgb, var(--accent) 65%, black 35%);
+  border-left: 4px solid var(--card2);
   padding-left: 14px;
 }
 
-.steps{
-  margin: 14px 0 0;
-  padding-left: 18px;
-}
+.steps{ margin: 14px 0 0; padding-left: 18px; }
 .steps li{ margin: 10px 0; }
 
-.grid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-.two{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
+.grid{ display:grid; grid-template-columns: 1fr; gap: 14px; }
+.two{ display:grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 880px){
   .grid{ grid-template-columns: repeat(3, 1fr); }
   .two{ grid-template-columns: 1fr 1fr; }
 }
 
-.list{
-  margin: 0;
-  padding-left: 18px;
-}
+.list{ margin: 0; padding-left: 18px; }
 .list li{ margin: 10px 0; }
 
 .section__closing{
   margin-top: 18px;
-  color: var(--muted);
+  color: rgba(255,255,255,.78);
 }
 
 .note{
   margin-top: 14px;
-  color: var(--muted);
+  color: rgba(255,255,255,.74);
   font-size: 14px;
 }
 
-/* Buttons */
-.actions{
-  display:flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
-}
+/* Buttons：主按鈕用「點睛色」(小面積)；幽靈按鈕中性 */
+.actions{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 .btn{
   display:inline-flex;
   align-items:center;
@@ -225,48 +205,38 @@ p{ margin: 0 0 14px; }
   border: 1px solid rgba(0,0,0,.14);
 }
 .btn--primary{
-  background: color-mix(in srgb, var(--accent) 88%, var(--accent2) 12%);
+  background: var(--card2);         /* 點睛色 */
   color: rgba(0,0,0,.85);
-  border-color: rgba(0,0,0,.08);
+  border-color: rgba(0,0,0,.10);
 }
 .btn--primary:hover{ filter: brightness(.98); }
+
 .btn--ghost{
-  background: rgba(255,255,255,.55);
-  color: var(--text);
+  background: rgba(255,255,255,.14);
+  color: rgba(255,255,255,.92);
+  border-color: rgba(255,255,255,.22);
 }
+.btn--ghost:hover{ background: rgba(255,255,255,.18); }
+
 .btn:focus{
-  outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent 65%);
+  outline: 3px solid rgba(255,255,255,.28);
   outline-offset: 2px;
 }
 
 .divider{
   height: 1px;
-  background: rgba(0,0,0,.08);
+  background: rgba(0,0,0,.10);
   margin: 18px 0;
 }
 
-.contact{
-  display:grid;
-  gap: 10px;
-  margin-top: 14px;
-}
-.contact__item{
-  display:flex;
-  gap: 12px;
-  align-items: baseline;
-}
-.label{
-  width: 56px;
-  color: var(--muted);
-  font-size: 13px;
-}
-.value{
-  color: var(--text);
-}
+.contact{ display:grid; gap: 10px; margin-top: 14px; }
+.contact__item{ display:flex; gap: 12px; align-items: baseline; }
+.label{ width: 56px; color: var(--muted); font-size: 13px; }
+.value{ color: var(--text); }
 
 .footer{
   padding: 26px 0 0;
-  color: var(--muted);
+  color: rgba(255,255,255,.70);
   font-size: 13px;
   text-align:center;
 }
