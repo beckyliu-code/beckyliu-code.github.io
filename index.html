@@ -7,18 +7,24 @@
 
   <style>
     :root{
-      --bg1:#f7f7f5;
-      --bg2:#f1f2f4;
+      /* W2：暖米杏底 + 暖玫瑰棕/淡琥珀渲染 */
+      --bg1:#fbf6f2;
+      --bg2:#f2ece7;
+
       --card: rgba(255,255,255,.78);
       --border: rgba(0,0,0,.08);
       --text:#1f1f1f;
       --muted:#666;
       --shadow: 0 12px 32px rgba(0,0,0,.07);
       --radius: 18px;
-      --accentA: rgba(47,111,106,.14);
-      --accentB: rgba(46,91,169,.12);
-      --lineA: rgba(47,111,106,.85);
-      --lineB: rgba(46,91,169,.75);
+
+      --accentA: rgba(214, 152, 135, .18); /* 暖玫瑰棕 */
+      --accentB: rgba(233, 197, 144, .14); /* 淡琥珀 */
+
+      --lineA: rgba(178, 90, 72, .85);
+      --lineB: rgba(171, 126, 76, .75);
+
+      --maxw: 920px;
     }
 
     * { box-sizing: border-box; }
@@ -31,13 +37,13 @@
         "PingFang TC","PingFang HK","Hiragino Sans",
         "Microsoft JhengHei","Noto Sans TC",sans-serif;
 
-      /* 情緒背景（有顏色，但克制） */
       background:
         radial-gradient(1200px 600px at 15% 0%, var(--accentA), transparent 60%),
         radial-gradient(1000px 600px at 85% 30%, var(--accentB), transparent 60%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
     }
 
+    /* 頂部細線：讓頁面更“被設計過” */
     .topline{
       position:fixed;
       top:0; left:0; right:0;
@@ -48,7 +54,7 @@
     }
 
     .wrap{
-      max-width: 920px;
+      max-width: var(--maxw);
       margin: 0 auto;
       padding: 0 18px;
     }
@@ -64,11 +70,6 @@
       border-radius: var(--radius);
       padding: 56px 44px;
       backdrop-filter: blur(6px);
-    }
-
-    @media (max-width: 640px){
-      .card{ padding: 40px 22px; }
-      section{ padding: 60px 0; }
     }
 
     h1{
@@ -113,8 +114,8 @@
     .quote{
       margin: 26px 0 12px;
       padding: 14px 16px;
-      border-left: 3px solid rgba(47,111,106,.75);
-      background: rgba(47,111,106,.06);
+      border-left: 3px solid var(--lineA);
+      background: rgba(178, 90, 72, .06);
       border-radius: 12px;
       font-weight: 520;
     }
@@ -156,6 +157,33 @@
     @keyframes bob{
       0%,100%{ transform: translateY(-2px); opacity:.75; }
       50%{ transform: translateY(3px); opacity:1; }
+    }
+
+    /* ====== ② 手機端閱讀優化（重點） ======
+       目的：更有呼吸感、避免太擠、避免字太小/太大
+    */
+    @media (max-width: 640px){
+      .wrap{ padding: 0 14px; }
+      section{ padding: 54px 0; }
+      .card{ padding: 34px 18px; border-radius: 16px; }
+
+      body{ line-height: 2.0; } /* 手機更好讀 */
+
+      h1{ font-size: 1.85rem; line-height: 1.32; margin-bottom: 18px; }
+      h2{ font-size: 1.28rem; margin-bottom: 20px; }
+      h3{ font-size: 1.05rem; margin-top: 26px; }
+
+      p{ margin-bottom: 16px; }
+      li{ margin: 9px 0; }
+
+      .divider{ margin: 22px 0 20px; }
+
+      .quote{
+        margin: 20px 0 12px;
+        padding: 12px 14px;
+      }
+
+      .scroll-hint{ margin-top: 18px; }
     }
   </style>
 </head>
