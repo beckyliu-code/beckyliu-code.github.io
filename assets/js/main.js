@@ -1,1 +1,1 @@
-console.log("ok");
+document.getElementById("y").textContent = new Date().getFullYear();
