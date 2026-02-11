@@ -1,17 +1,21 @@
 :root{
   --max: 760px;
-  --radius: 16px;
 
-  /* B 方案核心：背景景泰藍，承載粉米 */
-  --bg: #2876AB;         /* 景泰藍 */
-  --panel: #EFC5CF;      /* 粉米（承載） */
-  --topbar: #EFC5CF;     /* 你要求：最上方改成粉色 */
+  /* 主體：景泰藍背景 + 粉米承載 */
+  --bg: #2876AB;           /* 景泰藍 */
+  --panel: #EFC5CF;        /* 粉米 */
+  --topbar: #EFC5CF;       /* 頂部粉色（你要求） */
+
   --text: #1B1F24;
   --muted: #4E5E70;
-  --inkOnBlue: rgba(255,255,255,.92); /* 在藍底上用的文字色 */
+
+  --inkOnBlue: rgba(255,255,255,.92);
   --line: rgba(0,0,0,.10);
 
-  --accent: #1B1F24;     /* 按鈕邊/文字克制 */
+  /* 頂部標題字色：景泰藍 */
+  --titleBlue: #2876AB;
+
+  --radius: 16px;
   --btnBg: rgba(255,255,255,.18);
 }
 
@@ -31,7 +35,7 @@ body{
   margin: 0 auto;
 }
 
-/* 頂部：粉色，且無導航 */
+/* 頂部：粉色；無菜單 */
 .topbar{
   position: sticky;
   top:0;
@@ -42,32 +46,31 @@ body{
 .topbar__inner{
   padding: 14px 0;
 }
-.brand{ display:flex; flex-direction:column; gap:2px; }
-.brand__name{
+
+/* 你要求：回歸本源｜身心整合同等大小/字體/顏色；字體×2 */
+.brand--inline{
+  display:flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.brand__word,
+.brand__sep{
   font-weight: 800;
   letter-spacing: .2px;
-  color: var(--text);
-}
-.brand__tag{
-  font-size: 12px;
-  color: rgba(0,0,0,.55);
+  color: var(--titleBlue);
+  font-size: 32px;     /* 這裡按「兩倍」做大：原來大概 16px → 32px */
+  line-height: 1.05;
 }
 
-/* section：縱向閱讀、不要卡片 grid */
+/* section：縱向閱讀 */
 .section{
   padding: 46px 0;
 }
 
 /* 首屏 */
-.hero{
-  padding-top: 56px;
-}
-.kicker{
-  margin:0 0 10px;
-  font-size: 13px;
-  letter-spacing: .12em;
-  color: rgba(255,255,255,.78);
-}
+.hero{ padding-top: 56px; }
+
 .hero__title{
   margin:0 0 14px;
   font-size: clamp(34px, 7vw, 46px);
@@ -75,6 +78,8 @@ body{
   letter-spacing: -0.02em;
   color: rgba(255,255,255,.96);
 }
+
+/* 文本排版（你要求：逗號/句號換行；我已在 HTML 用 <br/> 做了） */
 .lead{
   margin: 0 0 14px;
   font-size: 18px;
@@ -86,7 +91,6 @@ body{
   color: rgba(255,255,255,.82);
 }
 
-/* 各屏標題：白字 + 下方粉米承載條（很克制） */
 .h2{
   margin:0 0 14px;
   font-size: 22px;
@@ -100,7 +104,7 @@ body{
   font-weight: 700;
 }
 
-/* 承載區：只在需要「重點」時給粉米背景，不做多個block */
+/* 承載區：只在必要處使用粉米（quote / contact） */
 .quote{
   margin: 14px 0 0;
   padding: 14px 14px;
@@ -110,7 +114,6 @@ body{
   color: var(--text);
 }
 
-/* 列表 */
 .ol, .ul{
   margin: 10px 0 14px;
   padding-left: 18px;
@@ -124,7 +127,7 @@ body{
   color: rgba(255,255,255,.76);
 }
 
-/* 按鈕：移動端大一點、縱向更舒服 */
+/* 按鈕 */
 .actions{
   display:flex;
   flex-direction: column;
@@ -145,12 +148,7 @@ body{
 }
 .btn:hover{ background: rgba(255,255,255,.22); }
 
-.btn--ghost{
-  background: transparent;
-  border-color: rgba(255,255,255,.22);
-}
-
-/* 聯絡區：粉米承載（一次就夠） */
+/* 聯絡區 */
 .contact{
   margin-top: 14px;
   padding: 14px 14px;
