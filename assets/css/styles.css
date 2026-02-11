@@ -69,12 +69,12 @@ body{
 /* ===== 第一標題靠左 ===== */
 
 .hero__title{
-  font-size: clamp(56px, 9vw, 84px);
+  font-size: clamp(44px, 7.2vw, 64px);
   font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
 
-  margin-bottom: 60px;
+  margin: 0 0 40px;
   text-align: left;
 
   /* 舞台层次 */
