@@ -1,177 +1,110 @@
 :root{
-  --bg: #2876AB;
-  --pink: #EFC5CF;
-  --ink: #1B1F24;
-
-  --white: rgba(255,255,255,.92);
-  --white2: rgba(255,255,255,.84);
-  --white3: rgba(255,255,255,.72);
-
-  --max: 720px;
-  --radius: 22px;
+  --bg:#2876AB;
+  --pink:#EFC5CF;
+  --ink:#1B1F24;
+  --white:rgba(255,255,255,.92);
+  --white2:rgba(255,255,255,.82);
+  --max:760px;
+  --radius:20px;
 }
 
-*{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background: var(--bg);
-  color: var(--white);
-  line-height: 1.85;
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.9;
 }
 
 .container{
-  width: 100%;
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width:var(--max);
+  margin:auto;
+  padding:0 20px;
 }
 
-/* ===== 頂部 ===== */
-
+/* 頂部 */
 .topbar{
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background: var(--pink);
-  border-bottom: 1px solid rgba(0,0,0,.08);
-}
-
-.topbar__inner{
-  padding: 14px 0;
+  background:var(--pink);
+  padding:18px 0;
 }
 
 .brand{
-  display:flex;
-  align-items: baseline;
-  gap: 8px;
+  font-size:28px;
+  font-weight:900;
+  color:#2876AB;
+  letter-spacing:2px;
 }
 
-.brand__word,
-.brand__sep{
-  font-weight: 900;
-  letter-spacing: .2px;
-  color: #2876AB;
-  font-size: 32px;
-  line-height: 1.05;
-}
-
-/* ===== 區塊 ===== */
-
+/* 區塊 */
 .section{
-  padding: 72px 0;
-  border-top: 1px solid rgba(255,255,255,.18);
+  padding:90px 0;
+  border-top:1px solid rgba(255,255,255,.18);
 }
-.section:first-of-type{ border-top: 0; }
+.section:first-of-type{
+  border-top:0;
+}
 
-/* ===== 第一標題靠左 ===== */
-
+/* 第一標題 */
 .hero__title{
-  font-size: clamp(44px, 7.2vw, 64px);
-  font-weight: 900;
-  line-height: 1.18;
-  letter-spacing: -0.015em;
-
-  margin: 0 0 40px;
-  text-align: left;
-
-  /* 舞台层次 */
-  color: rgba(255,255,255,.98);
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.15),
-    0 18px 40px rgba(0,0,0,.35);
+  font-size:clamp(42px,7vw,60px);
+  font-weight:900;
+  margin-bottom:40px;
+  text-align:left;
 }
 
-/* ===== 正文統一 ===== */
-
+/* 正文 */
 .text{
-  margin: 0 0 18px;
-  font-size: 16px;
-  color: var(--white2);
+  font-size:17px;
+  color:var(--white2);
+  margin-bottom:24px;
 }
 
-/* ===== 粉色背景章標題（必須居中） ===== */
-
+/* 粉色章標題 */
 .h2{
-  display: block;                 /* 关键 */
-  width: fit-content;             /* 背景宽度随文字 */
-  margin: 0 auto 32px;            /* 整块居中 */
-  padding: 16px 28px;
-
-  background: var(--pink);
-  color: #2876AB;
-
-  font-size: 26px;
-  font-weight: 900;
-  line-height: 1.3;
-  text-align: center;             /* 粉块内文字居中 */
-
-  border-radius: var(--radius);
+  display:block;
+  width:fit-content;
+  margin:0 auto 50px;
+  padding:16px 40px;
+  background:var(--pink);
+  color:#2876AB;
+  font-size:26px;
+  font-weight:900;
+  border-radius:100px;
+  text-align:center;
 }
 
-/* ===== 小標題靠左 ===== */
-
+/* 小標題 */
 .h3{
-  margin: 26px 0 10px;
-  font-size: 19px;
-  font-weight: 900;
-  color: rgba(255,255,255,.96);
-  line-height: 1.35;
-  text-align: left;
+  font-size:19px;
+  font-weight:900;
+  margin:40px 0 15px;
 }
 
-/* ===== 列表 ===== */
-
-.ol, .ul{
-  margin: 12px 0 18px;
-  padding-left: 18px;
-  color: rgba(255,255,255,.88);
-}
-.ol li, .ul li{
-  margin: 12px 0;
-}
-
-/* ===== 聯絡區粉底 ===== */
-
+/* 聯絡區 */
 .contact{
-  margin-top: 18px;
-  padding: 18px;
-  background: var(--pink);
-  border-radius: var(--radius);
-  color: var(--ink);
-  border: 1px solid rgba(0,0,0,.08);
+  background:var(--pink);
+  padding:20px;
+  border-radius:var(--radius);
+  color:var(--ink);
 }
 
 .contact__row{
   display:flex;
-  gap: 12px;
-  align-items: baseline;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  gap:15px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(0,0,0,.1);
 }
-
 .contact__row:last-child{
-  border-bottom: 0;
+  border-bottom:0;
 }
 
 .label{
-  width: 56px;
-  font-size: 13px;
-  color: rgba(0,0,0,.55);
+  width:60px;
+  font-weight:600;
 }
 
 .value{
-  font-size: 14px;
-  color: rgba(0,0,0,.85);
-}
-
-/* ===== Footer ===== */
-
-.footer{
-  padding: 24px 0 0;
-  text-align: center;
-  font-size: 13px;
-  color: rgba(255,255,255,.70);
+  flex:1;
 }
