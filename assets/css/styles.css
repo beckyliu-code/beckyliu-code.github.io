@@ -1,41 +1,94 @@
-/* ====== 層級強化：每屏清楚分開 ====== */
+:root{
+  --bg: #2876AB;          /* 景泰藍背景 */
+  --pink: #EFC5CF;        /* 粉米章標題 */
+  --text: #1B1F24;
+  --whiteText: rgba(255,255,255,.92);
+  --containerWidth: 760px;
+}
+
+/* 基本設定 */
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  background:var(--bg);
+  color:var(--whiteText);
+  line-height:1.85;
+}
+
+/* 容器 */
+.container{
+  width:min(var(--containerWidth), calc(100% - 36px));
+  margin:0 auto;
+}
+
+/* 頂部 */
+.topbar{
+  background:var(--pink);
+  padding:16px 0;
+}
+
+.brand{
+  display:flex;
+  gap:10px;
+  font-weight:900;
+  font-size:32px;
+  color:#2876AB; /* 景泰藍字 */
+}
+
+/* 區塊 */
 .section{
-  padding: 54px 0;                 /* 比之前更有呼吸感 */
-  border-top: 1px solid rgba(255,255,255,.16); /* 每屏一条极淡分隔线 */
+  padding:64px 0;
+  border-top:1px solid rgba(255,255,255,.18);
 }
+
 .section:first-of-type{
-  border-top: 0;
+  border-top:0;
 }
 
-/* ====== 標題：粉色底條 + 景泰藍字（統一） ====== */
-.h2{
-  display: inline-block;
-  margin: 0 0 18px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(239,197,207,.92); /* 粉米底 */
-  color: #2876AB;                    /* 景泰藍字 */
-  font-size: 24px;
-  font-weight: 900;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-
-/* 首屏主标题保持白字大标题，但更“标题样子” */
+/* 主標題 */
 .hero__title{
-  margin:0 0 18px;
-  font-size: clamp(38px, 8vw, 52px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,.98);
-  font-weight: 900;
+  font-size:clamp(38px, 8vw, 52px);
+  font-weight:900;
+  line-height:1.15;
+  margin-bottom:24px;
+  color:#ffffff;
 }
 
-/* ====== 副標題（h3）統一：更醒目、同一節奏 ====== */
-.h3{
-  margin: 22px 0 8px;
-  font-size: 18px;
-  font-weight: 800;
-  color: rgba(255,255,255,.94);
-  line-height: 1.35;
+/* 通欄章標題 */
+.h2{
+  display:block;
+  width:100%;
+  padding:18px 20px;
+  margin-bottom:28px;
+  background:var(--pink);
+  color:#2876AB;
+  font-size:26px;
+  font-weight:900;
+  border-radius:18px;
+}
+
+/* 段落 */
+p{
+  margin:0 0 18px;
+}
+
+/* highlight 統一粉色承載 */
+.highlight{
+  margin-top:18px;
+  padding:18px;
+  background:var(--pink);
+  color:var(--text);
+  border-radius:16px;
+}
+
+/* 列表 */
+ol{
+  padding-left:22px;
+  margin:18px 0;
+}
+ol li{
+  margin:12px 0;
 }
