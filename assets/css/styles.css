@@ -69,13 +69,19 @@ body{
 /* ===== 第一標題靠左 ===== */
 
 .hero__title{
-  margin: 0 0 20px;
-  font-size: clamp(38px, 8vw, 52px);
+  font-size: clamp(56px, 9vw, 84px);
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: rgba(255,255,255,.98);
+
+  margin-bottom: 60px;
   text-align: left;
+
+  /* 舞台层次 */
+  color: rgba(255,255,255,.98);
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.15),
+    0 18px 40px rgba(0,0,0,.35);
 }
 
 /* ===== 正文統一 ===== */
