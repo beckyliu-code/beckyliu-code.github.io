@@ -1,23 +1,43 @@
-:root{
-  /* 灰 + 淡粉承载 + 柔绿点睛（克制但有承接） */
-  --bg: #F3F2F0;
-  --text: #1F2328;
-  --muted: #5C6670;
-  --card: #F6E8E6;
-  --border: #E2D6D4;
-  --accent: #6FAF7B;
+/* ================
+  主題：兩套「中國色」
+  - 官綠・蜜蠟（guanlv）
+  - 景泰藍・粉米（jingtai）
+================ */
 
+:root{
   --radius: 18px;
   --shadow: 0 10px 30px rgba(0,0,0,.06);
   --max: 760px;
 }
 
-*{ box-sizing:border-box; }
+/* 預設：官綠・蜜蠟 */
 html{ scroll-behavior:smooth; }
+html[data-theme="guanlv"]{
+  --bg: #F8E9C4;        /* 米白（底） */
+  --text: #1F2328;
+  --muted: #4F5B55;
+  --card: #F6E6B8;      /* 更柔的承載底 */
+  --border: rgba(23,106,59,.18);
+  --accent: #176A3B;    /* 官綠 */
+  --accent2: #E9B140;   /* 蜜蠟（金） */
+}
+
+/* 景泰藍・粉米 */
+html[data-theme="jingtai"]{
+  --bg: #F9EBEE;        /* 霧白 */
+  --text: #1B1F24;
+  --muted: #4E5E70;
+  --card: #EFC5CF;      /* 粉米承載 */
+  --border: rgba(40,118,171,.18);
+  --accent: #2876AB;    /* 景泰藍 */
+  --accent2: #EFC5CF;   /* 粉米 */
+}
+
+*{ box-sizing:border-box; }
 
 body{
   margin:0;
-  font-family: "Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.85;
@@ -34,7 +54,7 @@ body{
   top:0;
   z-index: 50;
   backdrop-filter: blur(10px);
-  background: rgba(243,242,240,.78);
+  background: color-mix(in srgb, var(--bg) 70%, white 30%);
   border-bottom: 1px solid rgba(0,0,0,.06);
 }
 .topbar__inner{
@@ -51,6 +71,8 @@ body{
   display:flex;
   gap: 10px;
   align-items:center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .nav a{
   color: var(--muted);
@@ -66,6 +88,19 @@ body{
 .nav__cta{
   border: 1px solid rgba(0,0,0,.12);
 }
+
+/* Theme Button */
+.themeBtn{
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.14);
+  background: color-mix(in srgb, white 60%, var(--card) 40%);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+}
+.themeBtn:hover{ filter: brightness(.98); }
 
 /* Hero */
 .hero{
@@ -118,7 +153,7 @@ h3{
 p{ margin: 0 0 14px; }
 
 .card{
-  background: var(--card);
+  background: color-mix(in srgb, var(--card) 78%, white 22%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -129,7 +164,7 @@ p{ margin: 0 0 14px; }
 }
 
 .quote{
-  border-left: 3px solid rgba(0,0,0,.18);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 65%, black 35%);
   padding-left: 14px;
 }
 
@@ -190,8 +225,8 @@ p{ margin: 0 0 14px; }
   border: 1px solid rgba(0,0,0,.14);
 }
 .btn--primary{
-  background: var(--accent);
-  color: #0b1a10;
+  background: color-mix(in srgb, var(--accent) 88%, var(--accent2) 12%);
+  color: rgba(0,0,0,.85);
   border-color: rgba(0,0,0,.08);
 }
 .btn--primary:hover{ filter: brightness(.98); }
@@ -200,7 +235,7 @@ p{ margin: 0 0 14px; }
   color: var(--text);
 }
 .btn:focus{
-  outline: 3px solid rgba(111,175,123,.35);
+  outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent 65%);
   outline-offset: 2px;
 }
 
@@ -237,4 +272,3 @@ p{ margin: 0 0 14px; }
 }
 
 .muted{ color: var(--muted); }
-
