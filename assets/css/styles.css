@@ -1,94 +1,216 @@
 :root{
-  --bg: #2876AB;          /* 景泰藍背景 */
-  --pink: #EFC5CF;        /* 粉米章標題 */
+  /* 主題：景泰藍 + 粉米 */
+  --bg: #2876AB;              /* 景泰藍背景 */
+  --pink: #EFC5CF;            /* 粉米（頂欄、章標題） */
   --text: #1B1F24;
-  --whiteText: rgba(255,255,255,.92);
-  --containerWidth: 760px;
+  --muted: #4E5E70;
+
+  /* 藍底上的文字 */
+  --white: rgba(255,255,255,.92);
+  --white2: rgba(255,255,255,.82);
+  --white3: rgba(255,255,255,.72);
+
+  --max: 720px;
+  --radius: 18px;
 }
 
-/* 基本設定 */
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
-  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  background:var(--bg);
-  color:var(--whiteText);
-  line-height:1.85;
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.85;
 }
 
-/* 容器 */
+/* 內容居中 + 自適應 */
 .container{
-  width:min(var(--containerWidth), calc(100% - 36px));
-  margin:0 auto;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* 頂部 */
+/* 頂部粉色欄 */
 .topbar{
-  background:var(--pink);
-  padding:16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--pink);
+  border-bottom: 1px solid rgba(0,0,0,.08);
 }
 
+.topbar__inner{
+  padding: 14px 0;
+}
+
+/* 頂部標題：同大小/同字體/同顏色，字體放大 */
 .brand{
   display:flex;
-  gap:10px;
-  font-weight:900;
-  font-size:32px;
-  color:#2876AB; /* 景泰藍字 */
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-/* 區塊 */
+.brand__word,
+.brand__sep{
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: #2876AB;
+  font-size: 32px;      /* 你要求的放大（兩倍級） */
+  line-height: 1.05;
+}
+
+/* 每屏：清楚分開，不粘連 */
 .section{
-  padding:64px 0;
-  border-top:1px solid rgba(255,255,255,.18);
+  padding: 72px 0;
+  border-top: 1px solid rgba(255,255,255,.18);
 }
 
 .section:first-of-type{
-  border-top:0;
+  border-top: 0;
 }
 
-/* 主標題 */
+/* 首屏主标题 */
 .hero__title{
-  font-size:clamp(38px, 8vw, 52px);
-  font-weight:900;
-  line-height:1.15;
-  margin-bottom:24px;
-  color:#ffffff;
+  margin: 0 0 18px;
+  font-size: clamp(38px, 8vw, 52px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,.98);
 }
 
-/* 通欄章標題 */
+/* 文本 */
+.lead{
+  margin: 0 0 18px;
+  font-size: 18px;
+  color: rgba(255,255,255,.90);
+}
+
+.body{
+  margin: 0 0 18px;
+  font-size: 16px;
+  color: var(--white2);
+}
+
+.small{
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: var(--white3);
+}
+
+/* 章標題：居中 + 背景寬度隨文字收縮（你要求） */
 .h2{
-  display:block;
-  width:100%;
-  padding:18px 20px;
-  margin-bottom:28px;
-  background:var(--pink);
-  color:#2876AB;
-  font-size:26px;
-  font-weight:900;
-  border-radius:18px;
+  display: inline-block;
+  margin: 0 auto 28px;
+  padding: 16px 26px;
+
+  background: rgba(239,197,207,.95);
+  color: #2876AB;
+
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+
+  border-radius: 22px;
+  text-align: center;
+  max-width: 100%;
 }
 
-/* 段落 */
-p{
-  margin:0 0 18px;
+/* 為了確保 inline-block 標題可視覺居中 */
+.section .container{
+  text-align: left;
+}
+.section .h2{
+  /* 讓標題居中，而正文保持左對齊的閱讀方式 */
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* highlight 統一粉色承載 */
-.highlight{
-  margin-top:18px;
-  padding:18px;
-  background:var(--pink);
-  color:var(--text);
-  border-radius:16px;
+/* 副標題統一 */
+.h3{
+  margin: 26px 0 10px;
+  font-size: 19px;
+  font-weight: 900;
+  color: rgba(255,255,255,.96);
+  line-height: 1.35;
 }
 
 /* 列表 */
-ol{
-  padding-left:22px;
-  margin:18px 0;
+.ol, .ul{
+  margin: 12px 0 18px;
+  padding-left: 18px;
+  color: rgba(255,255,255,.88);
 }
-ol li{
-  margin:12px 0;
+
+.ol li, .ul li{
+  margin: 12px 0;
+}
+
+/* 按鈕（保留一個行動入口即可） */
+.actions{
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 14px;
+
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.16);
+  color: rgba(255,255,255,.94);
+}
+
+.btn:hover{
+  background: rgba(255,255,255,.22);
+}
+
+/* 聯絡區：不使用粉底（保持一致） */
+.contact{
+  margin-top: 14px;
+  padding: 0;
+}
+
+.contact__row{
+  display:flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+}
+
+.contact__row:last-child{
+  border-bottom: 0;
+}
+
+.label{
+  width: 56px;
+  font-size: 13px;
+  color: rgba(255,255,255,.72);
+}
+
+.value{
+  font-size: 14px;
+  color: rgba(255,255,255,.92);
+}
+
+/* footer */
+.footer{
+  padding: 22px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,.70);
 }
