@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <!-- 頂部粉色欄：同大小/同字體/同顏色（景泰藍） -->
+  <!-- 頂部粉色欄：居中品牌 -->
   <header class="topbar">
     <div class="container topbar__inner">
       <div class="brand" aria-label="網站標題">
@@ -23,30 +23,48 @@
   <main>
     <!-- 第一屏 -->
     <section class="section hero" id="top">
-      <div class="container">
-        <!-- 1) 只有第一標題靠左 -->
-        <h1 class="hero__title">
-          很多問題<br>
-          不是「缺什麼」，<br />
-          而是「負擔太多」。
-        </h1>
+      <div class="container hero__grid">
+        <!-- 左：文案 -->
+        <div class="hero__copy">
+          <!-- ① 标题上方小图（没有图片也不会崩） -->
+          <img class="hero__mark" src="images/mark.png" alt="标记" />
 
-        <p class="text">
-          在身體尚未被清理之前，再多的補充、再用力的調整，
-          往往只是把問題暫時蓋住，而不是讓系統真正恢復。
-        </p>
+          <!-- 只有第一標題靠左 -->
+          <h1 class="hero__title">
+            很多問題<br>
+            不是「缺什麼」，<br />
+            而是「負擔太多」。
+          </h1>
 
-        <p class="text">
-          你可能已經感覺到，不斷地加東西、加方法、聽從各種建議，
-          並沒有把狀態帶到你真正想要的層級。
-          問題並不是你不夠努力，而是我們從來沒有真正理解過——身體本身是如何運作的。
-        </p>
+          <p class="text">
+            在身體尚未被清理之前，再多的補充、再用力的調整，
+            往往只是把問題暫時蓋住，而不是讓系統真正恢復。
+          </p>
 
-        <p class="text">
-          當缺少對身體底層邏輯的理解，我們就很難判斷：
-          哪些方法是真正適合自己的，哪些只是短期看起來有用。
-          於是，只能在問題出現和看似好轉之間，一次又一次地反覆。
-        </p>
+          <p class="text">
+            你可能已經感覺到，不斷地加東西、加方法、聽從各種建議，
+            並沒有把狀態帶到你真正想要的層級。
+            問題並不是你不夠努力，而是我們從來沒有真正理解過——身體本身是如何運作的。
+          </p>
+
+          <p class="text">
+            當缺少對身體底層邏輯的理解，我們就很難判斷：
+            哪些方法是真正適合自己的，哪些只是短期看起來有用。
+            於是，只能在問題出現和看似好轉之間，一次又一次地反覆。
+          </p>
+
+          <!-- 按钮（可用可不用） -->
+          <div class="actions">
+            <a class="btn" href="#contact">開始了解</a>
+            <a class="btn" href="#why">先看原因</a>
+          </div>
+        </div>
+
+        <!-- ② 右侧大图（没有图片也不会崩） -->
+        <div class="hero__visual">
+          <img class="hero__image" src="images/hero.jpg" alt="空间/抽象图" />
+        </div>
+      </div>
     </section>
 
     <!-- 第二屏 -->
@@ -78,7 +96,6 @@
     <!-- 第三屏 -->
     <section class="section" id="order">
       <div class="container">
-        <!-- 2) 真正的改變後換行 -->
         <h2 class="h2">真正的改變，<br />離不開正確的順序。</h2>
 
         <p class="text">
@@ -104,10 +121,10 @@
     <!-- 第四屏 -->
     <section class="section" id="support">
       <div class="container">
-        <!-- 3) 不是答案前換行 -->
         <h2 class="h2">我們能提供的，<br />不是答案，而是支撐。</h2>
 
-        <h3 class="h3">1) 幫助你看聯絡身體正在發生什麼</h3>
+        <!-- 小修正：看懂 -->
+        <h3 class="h3">1) 幫助你看懂身體正在發生什麼</h3>
         <p class="text">
           當不適、疲勞或反覆出現時，我們先弄清楚：這是身體在承受什麼，又是在用什麼方式維持運轉。
           看清這一點，很多焦慮會自然退下去。
@@ -136,7 +153,6 @@
     <!-- 第五屏 -->
     <section class="section" id="fit">
       <div class="container">
-        <!-- 4) 路徑後換行 -->
         <h2 class="h2">這條路徑，<br />取決於當下是否匹配。</h2>
 
         <h3 class="h3">適合的人</h3>
@@ -164,7 +180,6 @@
     <!-- 第六屏 -->
     <section class="section" id="contact">
       <div class="container">
-        <!-- 5) 繼續後換行 -->
         <h2 class="h2">如果你願意繼續，<br />我們可以這樣開始。</h2>
 
         <p class="text">
@@ -172,7 +187,6 @@
           你可以帶著你現在最真實的感受、困擾或正在反覆的問題來，剩下的部分，由我們來幫你一起梳理。
         </p>
 
-        <!-- 6) 聯絡和地點背景粉色 -->
         <div class="contact">
           <div class="contact__row">
             <div class="label">聯絡</div>
