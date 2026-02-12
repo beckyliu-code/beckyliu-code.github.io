@@ -9,6 +9,12 @@
 
   --max: 720px;
   --radius: 26px;
+
+  /* ===== 统一节奏（你要的“完全一致”） ===== */
+  --space-section: 150px;   /* 每屏上下留白（含第一屏下缘到第二屏开头） */
+  --space-block: 64px;      /* 内容块 → 下一标题/下一块 的统一间距 */
+  --space-paragraph: 28px;  /* 段落之间 */
+  --space-actions: 100px;   /* 第一屏标题 → 按钮 */
 }
 
 *{ box-sizing:border-box; }
@@ -24,7 +30,6 @@ body{
   line-height: 1.9;
 }
 
-/* 容器 */
 .container{
   width: 100%;
   max-width: var(--max);
@@ -33,7 +38,6 @@ body{
 }
 
 /* ===== 頂部 ===== */
-
 .topbar{
   position: sticky;
   top: 0;
@@ -41,9 +45,7 @@ body{
   background: var(--pink);
 }
 
-.topbar__inner{
-  padding: 16px 0;
-}
+.topbar__inner{ padding: 16px 0; }
 
 .brand{
   display:flex;
@@ -51,24 +53,23 @@ body{
   align-items: baseline;
   gap: 8px;
 }
-
 .brand__word,
 .brand__sep{
   font-weight: 800;
   color: #2876AB;
   font-size: 30px;
+  line-height: 1.05;
 }
 
-/* ===== 區塊統一呼吸 ===== */
-
+/* ===== 每屏统一上下留白 ===== */
 .section{
-  padding: 100px 0;
+  padding: var(--space-section) 0;
 }
 
-/* 第一屏：上下统一留白 */
+/* 第一屏：上下留白必须一致 */
 .section.hero{
-  padding-top: 160px;
-  padding-bottom: 160px;   /* 上下统一 */
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
 }
 
 .hero__title{
@@ -79,41 +80,40 @@ body{
   letter-spacing: -0.02em;
 }
 
-/* 按钮再往下沉 10% */
+/* 第一屏按钮与标题距离（你要再分开一点） */
 .actions{
-  margin-top: 100px;
+  margin-top: var(--space-actions);
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
 
-/* ===== 正文 ===== */
-
+/* ===== 段落统一呼吸 ===== */
 .text{
-  margin: 0 0 28px;
+  margin: 0 0 var(--space-paragraph);
   font-size: 16px;
   color: var(--white2);
 }
 
-/* 强调句（不糊） */
+/* 强调句：稳但不糊 */
 .text--em{
   font-weight: 700;
   color: rgba(255,255,255,.95);
   letter-spacing: .15px;
 }
 
-/* 第二屏转场拉开 */
-#why p.text + .h2{
-  margin-top: 64px;
-}
+/* 关键：让“块与块”之间统一成同一个距离 */
+.text + .h2{ margin-top: var(--space-block); }
+.ol + .text{ margin-top: var(--space-paragraph); }
+.ul + .text{ margin-top: var(--space-paragraph); }
 
-/* ===== 全宽粉色章节条 ===== */
-
+/* ===== 全宽粉色章节条（分割每段） ===== */
 .h2{
   position: relative;
   width: 100%;
-  margin: 80px 0 50px;
+  margin: var(--space-block) 0 calc(var(--space-block) * 0.75);
   padding: 22px 0;
+
   text-align: center;
   font-size: 24px;
   font-weight: 800;
@@ -122,7 +122,6 @@ body{
   z-index: 1;
 }
 
-/* 真正的全屏粉色背景条 */
 .h2::before{
   content:"";
   position:absolute;
@@ -134,31 +133,30 @@ body{
   background: var(--pink);
   z-index:-1;
 
-  /* 去棱角，柔和一点 */
-  border-radius: 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,.05);
+  /* 柔和一点，不硬 */
+  box-shadow: 0 10px 24px rgba(0,0,0,.05);
 }
 
-/* ===== 小標題 ===== */
+/* h2 下第一段内容，上方不要再额外顶开 */
+.h2 + .text{ margin-top: 0; }
 
+/* ===== 小標題 ===== */
 .h3{
-  margin: 36px 0 14px;
+  margin: var(--space-block) 0 14px;
   font-size: 18px;
   font-weight: 700;
+  color: rgba(255,255,255,.96);
 }
 
 /* ===== 列表 ===== */
-
 .ol, .ul{
   margin: 14px 0 26px;
   padding-left: 18px;
+  color: rgba(255,255,255,.88);
 }
-.ol li, .ul li{
-  margin: 12px 0;
-}
+.ol li, .ul li{ margin: 12px 0; }
 
 /* ===== 按鈕 ===== */
-
 .btn{
   display: inline-flex;
   align-items: center;
@@ -176,14 +174,12 @@ body{
 
   transition: all .18s ease;
 }
-
 .btn:hover{
   background: rgba(255,255,255,.25);
   transform: translateY(-2px);
 }
 
 /* ===== 聯絡區 ===== */
-
 .contact{
   margin-top: 24px;
   padding: 22px;
@@ -191,7 +187,6 @@ body{
   border-radius: var(--radius);
   color: var(--ink);
 }
-
 .contact__row{
   display:flex;
   gap: 12px;
@@ -199,18 +194,14 @@ body{
   border-bottom: 1px solid rgba(0,0,0,.08);
 }
 .contact__row:last-child{ border-bottom: 0; }
-
 .label{
   width: 60px;
   font-size: 13px;
   color: rgba(0,0,0,.55);
 }
-.value{
-  font-size: 14px;
-}
+.value{ font-size: 14px; }
 
 /* ===== Footer ===== */
-
 .footer{
   padding-top: 40px;
   text-align: center;
@@ -218,26 +209,49 @@ body{
   color: rgba(255,255,255,.70);
 }
 
+/* ===== 返回icon（很小、克制） ===== */
+.backfab{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.14);
+  color: rgba(255,255,255,.92);
+
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+
+  backdrop-filter: blur(6px);
+  transition: transform .15s ease, background .15s ease;
+}
+.backfab:hover{
+  background: rgba(255,255,255,.20);
+  transform: translateY(-1px);
+}
+
 /* ===== 手机适配 ===== */
-
 @media (max-width: 520px){
-
-  .section{
-    padding: 80px 0;
+  :root{
+    --space-section: 130px;
+    --space-block: 56px;
+    --space-paragraph: 24px;
+    --space-actions: 80px;
   }
 
-  .section.hero{
-    padding-top: 130px;
-    padding-bottom: 130px;
-  }
+  .brand__word, .brand__sep{ font-size: 26px; }
 
   .actions{
-    margin-top: 80px;
     flex-direction: column;
+    gap: 10px;
   }
-
-  .btn{
-    width:100%;
-  }
-
+  .btn{ width:100%; }
 }
