@@ -1,6 +1,6 @@
 :root{
-  --bg:#2876AB;          /* 景泰蓝 */
-  --pink:#EFC5CF;        /* 粉色 */
+  --bg:#2876AB;
+  --pink:#EFC5CF;
   --ink:#1B1F24;
 
   --white:rgba(255,255,255,.92);
@@ -8,15 +8,13 @@
   --white3:rgba(255,255,255,.70);
 
   --max:760px;
+  --radius:26px;
 
-  
-  /* 统一节奏（你要“完全一致”） */
-  --section-pad:150px;
-  --gap-block:64px;
-  --gap-p:26px;
-  --gap-actions:96px;
-
-  --r:22px;
+  /* 统一节奏 */
+  --space-section:150px;
+  --space-block:64px;
+  --space-p:26px;
+  --space-actions:96px;
 }
 
 *{ box-sizing:border-box; }
@@ -27,12 +25,11 @@ body{
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                "Noto Sans TC","PingFang TC","Hiragino Sans","Microsoft JhengHei",
                Arial, sans-serif;
-  background: var(--bg);
-  color: var(--white);
-  line-height: 1.9;
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.9;
 }
 
-/* ===== layout ===== */
 .container{
   width:100%;
   max-width:var(--max);
@@ -40,7 +37,7 @@ body{
   padding:0 22px;
 }
 
-/* ===== topbar ===== */
+/* topbar */
 .topbar{
   position:sticky;
   top:0;
@@ -48,29 +45,25 @@ body{
   background:var(--pink);
   box-shadow:0 1px 0 rgba(0,0,0,.06);
 }
-
-.topbar__inner{
-  padding:14px 0;
-}
-
+.topbar__inner{ padding:14px 0; }
 .brand{
-  text-align:center;
-  font-weight:800;
+  display:flex;
+  justify-content:center;
+  align-items:baseline;
+  gap:8px;
+}
+.brand__word,.brand__sep{
   color:var(--bg);
-  letter-spacing:.3px;
+  font-weight:800;
   font-size:28px;
-  line-height:1.1;
+  line-height:1.05;
 }
 
-/* ===== sections ===== */
-.section{
-  padding:var(--section-pad) 0;
-}
-
-/* 第一屏上下留白一致 */
+/* sections */
+.section{ padding:var(--space-section) 0; }
 .section.hero{
-  padding-top:var(--section-pad);
-  padding-bottom:var(--section-pad);
+  padding-top:var(--space-section);
+  padding-bottom:var(--space-section);
 }
 
 .hero__title{
@@ -83,31 +76,27 @@ body{
   text-align:left;
 }
 
-/* 第一屏正文块（短句感） */
-.hero__body{
-  margin-top:44px;
-  max-width: 44em;
-}
+.hero__body{ margin-top:44px; }
 
-.hero__body p{
-  margin:0 0 16px;
-  color:var(--white2);
+/* text */
+.text{
+  margin:0 0 var(--space-p);
   font-size:16px;
+  color:var(--white2);
 }
-
-.hero__body .em{
-  font-weight:700;         /* 不糊 */
+.text--em{
+  font-weight:700;
   color:rgba(255,255,255,.95);
 }
-
-.hero__body .strong{
-  font-weight:800;
-  color:rgba(255,255,255,.98);
+.text--lead{
+  font-weight:700;
+  color:rgba(255,255,255,.95);
+  margin-bottom: var(--space-block);
 }
 
-/* ===== actions / buttons ===== */
+/* actions */
 .actions{
-  margin-top:var(--gap-actions);
+  margin-top:var(--space-actions);
   display:flex;
   gap:14px;
   flex-wrap:wrap;
@@ -123,138 +112,124 @@ body{
   text-decoration:none;
   font-size:14px;
   font-weight:700;
-  transition:transform .16s ease, background .16s ease, border-color .16s ease;
+  transition:transform .16s ease, background .16s ease;
 }
-
-/* 主按钮（与我们聊聊） */
-.btn.primary{
+.btn--primary{
   background:rgba(255,255,255,.92);
   color:var(--bg);
   border:1px solid rgba(255,255,255,.15);
 }
-
-/* 次按钮（先理解逻辑） */
-.btn.ghost{
+.btn--ghost{
   background:rgba(255,255,255,.14);
   color:rgba(255,255,255,.95);
   border:1px solid rgba(255,255,255,.22);
 }
+.btn:hover{ transform:translateY(-2px); }
+.btn--ghost:hover{ background:rgba(255,255,255,.20); }
+.btn--primary:hover{ background:rgba(255,255,255,.98); }
 
-.btn:hover{
-  transform:translateY(-2px);
-}
-.btn.primary:hover{
-  background:rgba(255,255,255,.98);
-}
-.btn.ghost:hover{
-  background:rgba(255,255,255,.20);
-}
-
-/* ===== full width section bar ===== */
-/* 这是你要的“粉色贯穿条”——左右无留白 */
-.section-bar{
-  width:100vw;
-  margin-left:50%;
-  transform:translateX(-50%);
-
-  background:var(--pink);
-  color:var(--bg);
+/* full-width pink title bar (h2) */
+.h2{
+  position:relative;
+  width:100%;
+  margin:var(--space-block) 0 calc(var(--space-block)*.75);
+  padding:22px 0;
   text-align:center;
-
-  padding:22px 18px;
-  font-size:22px;
+  font-size:24px;
   font-weight:800;
-  line-height:1.25;
-
+  line-height:1.3;
+  color:var(--bg);
+  z-index:1;
+}
+.h2::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:0;
+  width:100vw;
+  height:100%;
+  background:var(--pink);
+  z-index:-1;
   box-shadow:0 10px 24px rgba(0,0,0,.05);
 }
 
-/* 每个 section-bar 与下面内容间距固定 */
-.section-bar + .container{
-  margin-top:var(--gap-block);
+/* h3 */
+.h3{
+  margin:var(--space-block) 0 14px;
+  font-size:18px;
+  font-weight:700;
+  color:rgba(255,255,255,.96);
 }
 
-/* ===== blocks ===== */
-.block{
-  margin:0 0 var(--gap-block);
+/* list */
+.ol,.ul{
+  margin:14px 0 26px;
+  padding-left:18px;
+  color:rgba(255,255,255,.88);
 }
+.ol li,.ul li{ margin:12px 0; }
 
-.block:last-child{
-  margin-bottom:0;
-}
-
-.block p{
-  margin:0 0 var(--gap-p);
-  color:var(--white2);
-  font-size:16px;
-}
-
-.block p:last-child{
-  margin-bottom:0;
-}
-
-.block .strong{
-  font-weight:800;
-  color:rgba(255,255,255,.98);
-}
-
-.block .small{
-  font-size:14px;
-  color:rgba(255,255,255,.78);
-}
-
-/* ===== contact card ===== */
+/* contact */
 .contact{
-  margin-top:28px;
+  margin-top:24px;
   padding:22px;
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:var(--r);
+  background:var(--pink);
+  border-radius:var(--radius);
+  color:var(--ink);
+}
+.contact__row{
+  display:flex;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+.contact__row:last-child{ border-bottom:0; }
+.label{
+  width:60px;
+  font-size:13px;
+  color:rgba(0,0,0,.55);
+}
+.value{ font-size:14px; color:rgba(0,0,0,.85); }
+
+/* footer */
+.footer{
+  padding-top:40px;
+  text-align:center;
+  font-size:13px;
+  color:rgba(255,255,255,.70);
 }
 
-.contact p{
-  margin:0 0 12px;
-  color:rgba(255,255,255,.92);
-}
-.contact p:last-child{ margin-bottom:0; }
-
-/* ===== back button in contact ===== */
-.back-btn{
-  margin-top:22px;
-  height:42px;
-  padding:0 14px;
+/* back icon */
+.backfab{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  width:38px;
+  height:38px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.22);
-  background:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.14);
   color:rgba(255,255,255,.92);
-  font-size:13px;
-  font-weight:700;
+  font-size:16px;
   cursor:pointer;
-  transition:transform .16s ease, background .16s ease;
+  backdrop-filter:blur(6px);
+  transition:transform .15s ease, background .15s ease;
 }
-.back-btn:hover{
-  background:rgba(255,255,255,.18);
+.backfab:hover{
+  background:rgba(255,255,255,.20);
   transform:translateY(-1px);
 }
 
-/* ===== mobile ===== */
+/* mobile */
 @media (max-width:520px){
   :root{
-    --section-pad:130px;
-    --gap-block:56px;
-    --gap-actions:80px;
+    --space-section:130px;
+    --space-block:56px;
+    --space-actions:80px;
   }
-
-  .brand{ font-size:24px; }
-
-  .actions{
-    flex-direction:column;
-    gap:10px;
-  }
+  .brand__word,.brand__sep{ font-size:24px; }
+  .actions{ flex-direction:column; gap:10px; }
   .btn{ width:100%; }
-
-  .section-bar{
-    font-size:20px;
-    padding:20px 14px;
-  }
+  .h2{ font-size:20px; padding:20px 0; }
 }
