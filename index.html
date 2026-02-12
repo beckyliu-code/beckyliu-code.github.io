@@ -31,7 +31,7 @@
         </h1>
 
         <div class="actions">
-          <a class="btn" href="#contact">與我們聊聊</a>
+          <a class="btn" id="btnChat" href="#contact">與我們聊聊</a>
           <a class="btn" href="#why">先理解邏輯</a>
         </div>
       </div>
@@ -40,7 +40,6 @@
     <!-- 第二屏：思想展开 + 过渡提问 + 为什么 -->
     <section class="section" id="why">
       <div class="container">
-        <!-- 思想展开（短句式） -->
         <p class="text">
           在身體尚未被清理之前，<br>
           再多的補充、再用力的調整，<br>
@@ -66,12 +65,10 @@
           一次又一次地反覆。
         </p>
 
-        <!-- 过渡提问（定稿） -->
         <p class="text">
           你是否想過，為什麼「好轉」總是留不住？
         </p>
 
-        <!-- 原第二屏 -->
         <h2 class="h2">
           為什麼狀態總是在看似好轉之後，<br />
           又慢慢地退回去？
@@ -95,7 +92,7 @@
       </div>
     </section>
 
-    <!-- 第三屏：順序（保持連貫，不碎化） -->
+    <!-- 第三屏 -->
     <section class="section" id="order">
       <div class="container">
         <h2 class="h2">真正的改變，<br />離不開正確的順序。</h2>
@@ -120,7 +117,7 @@
       </div>
     </section>
 
-    <!-- 第四屏：我們能提供的（保持結構段落，不碎化） -->
+    <!-- 第四屏 -->
     <section class="section" id="support">
       <div class="container">
         <h2 class="h2">我們能提供的，<br />不是答案，而是支撐。</h2>
@@ -151,7 +148,7 @@
       </div>
     </section>
 
-    <!-- 第五屏：適合 / 暫時不適合（保持穩重，不碎化） -->
+    <!-- 第五屏 -->
     <section class="section" id="fit">
       <div class="container">
         <h2 class="h2">這條路徑，<br />取決於當下是否匹配。</h2>
@@ -178,7 +175,7 @@
       </div>
     </section>
 
-    <!-- 第六屏：聯絡 -->
+    <!-- 第六屏 -->
     <section class="section" id="contact">
       <div class="container">
         <h2 class="h2">如果你願意繼續，<br />我們可以這樣開始。</h2>
@@ -206,9 +203,52 @@
     </section>
   </main>
 
+  <!-- 小icon：回到刚才位置（只在误点跳到 contact 后出现） -->
+  <button class="backfab" id="backToLast" type="button" hidden aria-label="回到剛才位置" title="回到剛才位置">
+    ↩︎
+  </button>
+
   <script>
     const y = document.getElementById("y");
     if (y) y.textContent = new Date().getFullYear();
+
+    (function () {
+      const chatBtn = document.getElementById("btnChat");
+      const backBtn = document.getElementById("backToLast");
+
+      function hasLastPos() {
+        const v = sessionStorage.getItem("lastScrollY");
+        return v && Number(v) > 80;
+      }
+
+      function showBackIfNeeded() {
+        if (!backBtn) return;
+        if (location.hash === "#contact" && hasLastPos()) backBtn.hidden = false;
+        else backBtn.hidden = true;
+      }
+
+      if (chatBtn) {
+        chatBtn.addEventListener("click", () => {
+          sessionStorage.setItem("lastScrollY", String(window.scrollY || 0));
+        });
+      }
+
+      if (backBtn) {
+        backBtn.addEventListener("click", () => {
+          const last = sessionStorage.getItem("lastScrollY");
+          if (!last) return;
+
+          // 先去掉 hash，避免地址栏一直停在 #contact
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+
+          window.scrollTo({ top: Number(last), behavior: "smooth" });
+          backBtn.hidden = true;
+        });
+      }
+
+      window.addEventListener("hashchange", showBackIfNeeded);
+      window.addEventListener("load", showBackIfNeeded);
+    })();
   </script>
 </body>
 </html>
